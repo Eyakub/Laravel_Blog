@@ -51,6 +51,7 @@
                             <textarea class="cleditor" name="category_description" id="textarea2" rows="3"></textarea>
                         </div>
                     </div>
+                    
                     <div class="control-group">
                         <label class="control-label" for="typeahead">Publication Status </label>
                         <div class="controls">

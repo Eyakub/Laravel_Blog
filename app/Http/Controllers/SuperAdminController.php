@@ -46,7 +46,7 @@ class SuperAdminController extends Controller
                                                           //2nd || = form field name
         $data['category_description'] = $request->category_description;
         $data['publication_status'] = $request->publication_status;
-        
+        $data['created_at'] = date("y-m-d H:i:s");
         Db::table('tbl_category')->insert($data);
         return redirect::to('add-category');
         
