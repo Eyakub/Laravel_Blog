@@ -48,6 +48,7 @@ class SuperAdminController extends Controller
         $data['publication_status'] = $request->publication_status;
         $data['created_at'] = date("y-m-d H:i:s");
         Db::table('tbl_category')->insert($data);
+        Session::put('message', 'Save category information successfull');
         return redirect::to('add-category');
         
     }                                                     

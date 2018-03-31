@@ -1,5 +1,5 @@
 @extend('admin.admin_master')
-@section('admin.admin_main_content')
+@section('admin_main_content')
 
 <ul class="breadcrumb">
     <li>
