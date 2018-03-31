@@ -28,3 +28,7 @@ Route::get('/contact', 'WelcomeController@contact');
  */
 Route::get('/admin-panel', 'AdminController@index');
 Route::post('/admin-login','AdminController@admin_login_check'); //form er khetre (@post)
+Route::get('/dashboard', 'SuperAdminController@index');
+Route::get('/add-category', 'SuperAdminController@add_category');
+Route::post('/save-category', 'SuperAdminController@save_category');
+Route::get('/logout', 'SuperAdminController@logout');

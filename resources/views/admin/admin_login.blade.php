@@ -52,10 +52,16 @@
                 <div class="row-fluid">
                     <div class="login-box">
                         <div class="icons">
-                            <a href="index.html"><i class="halflings-icon home"></i></a>
+                            <a href="admin_master.blade.php.html"><i class="halflings-icon home"></i></a>
                             <a href="#"><i class="halflings-icon cog"></i></a>
                         </div>
                         <h2>Login to your account</h2>
+                        <h3 style="color:red">
+                            <?php
+                                echo Session::get('message');
+                                echo Session::put('message', '');
+                            ?>
+                        </h3>
                         {!! Form::open(['url' => '/admin-login', 'method'=>'post']) !!}
                             <fieldset>
 
