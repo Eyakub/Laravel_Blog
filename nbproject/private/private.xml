@@ -5,10 +5,9 @@
         <group name="Web works">
             <file>file:/H:/xampp/htdocs/test/app/Http/Controllers/SuperAdminController.php</file>
             <file>file:/H:/xampp/htdocs/test/resources/views/admin/admin_login.blade.php</file>
-            <file>file:/H:/xampp/htdocs/test/config/app.php</file>
             <file>file:/H:/xampp/htdocs/test/routes/web.php</file>
             <file>file:/H:/xampp/htdocs/test/app/Http/Controllers/AdminController.php</file>
-            <file>file:/H:/xampp/htdocs/test/resources/views/master.blade.php</file>
+            <file>file:/H:/xampp/htdocs/test/resources/views/admin/pages/manage_category.blade.php</file>
             <file>file:/H:/xampp/htdocs/test/resources/views/admin/admin_master.blade.php</file>
         </group>
     </open-files>

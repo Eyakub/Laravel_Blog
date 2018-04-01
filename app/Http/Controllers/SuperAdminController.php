@@ -51,7 +51,17 @@ class SuperAdminController extends Controller
         Session::put('message', 'Save category information successfull');
         return redirect::to('add-category');
         
-    }                                                     
+    }         
+    
+    /**
+     * manage created category
+     */
+    public function manage_category()
+    {
+        $manage_category = view('admin.pages.manage_category');
+        return view('admin.admin_master')
+                    ->with('admin_main_content', $manage_category);
+    }
     
     
     public function logout()

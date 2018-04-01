@@ -31,4 +31,5 @@ Route::post('/admin-login','AdminController@admin_login_check'); //form er khetr
 Route::get('/dashboard', 'SuperAdminController@index');
 Route::get('/add-category', 'SuperAdminController@add_category');
 Route::post('/save-category', 'SuperAdminController@save_category');
+Route::get('/manage-category', 'SuperAdminController@manage_category');
 Route::get('/logout', 'SuperAdminController@logout');

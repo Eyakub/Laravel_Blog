@@ -336,7 +336,7 @@
                         <ul class="nav nav-tabs nav-stacked main-menu">
                             <li><a href="{{URL::to('/dashboard')}}"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>	
                             <li><a href="{{URL::to('/add-category')}}"><i class="icon-envelope"></i><span class="hidden-tablet"> Add Category</span></a></li>
-                            <li><a href="blabla.html"><i class="icon-tasks"></i><span class="hidden-tablet"> Manage Category</span></a></li>
+                            <li><a href="{{URL::to('/manage-category')}}"><i class="icon-tasks"></i><span class="hidden-tablet"> Manage Category</span></a></li>
                             <li><a href="ui.html"><i class="icon-eye-open"></i><span class="hidden-tablet"> Add Blog</span></a></li>
                             <li><a href="widgets.html"><i class="icon-dashboard"></i><span class="hidden-tablet"> Manage Blog</span></a></li>
                             <li>
