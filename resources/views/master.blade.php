@@ -117,7 +117,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     foreach ($all_published_category as $v_category)
                     {
                     ?>
-                    <li class="active"><a href="{{$v_category->category_name}}"></a></li>
+                    <li class="active"><a href="#">{{$v_category->category_name}}</a></li>
                     <?php }?>
                 </div>
                 <div class="archives">
