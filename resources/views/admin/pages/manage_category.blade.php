@@ -1,5 +1,17 @@
 @extend('admin.admin_master')
 @section('admin_main_content')
+    <script type="text/javascript">
+        function check_delete() {
+            chk = confirm("Confirm Delete ?");
+            if (chk) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    </script>
+
     <ul class="breadcrumb">
         <li>
             <i class="icon-home"></i>
@@ -57,7 +69,8 @@
                             if($v_category->publication_status == 1)
                             {
                             ?>
-                            <a class="btn btn-success" href="{{URL::to('/unpublished-category/'.$v_category->category_id)}}">
+                            <a class="btn btn-success"
+                               href="{{URL::to('/unpublished-category/'.$v_category->category_id)}}">
                                 <i class="halflings-icon white thumbs-down"></i>
                             </a>
                             <?php
@@ -65,13 +78,18 @@
                             elseif($v_category->publication_status == 0)
                             {
                             ?>
-                            <a class="btn btn-danger" href="{{URL::to('/published-category/'.$v_category->category_id)}}">
+                            <a class="btn btn-danger"
+                               href="{{URL::to('/published-category/'.$v_category->category_id)}}">
                                 <i class="halflings-icon white thumbs-up"></i>
                             </a>
                             <?php
                             }
                             ?>
-                            <a class="btn btn-danger" href="#">
+                            <a class="btn btn-info" href="#">
+                                <i class="halflings-icon white edit"></i>
+                            </a>
+                                {{--onclick e {@return} must else true/false whatever it is, it will delete--}}
+                            <a class="btn btn-danger" href="{{URL::to('/delete-category/'.$v_category->category_id)}}" onclick="return check_delete();">
                                 <i class="halflings-icon white trash"></i>
                             </a>
                         </td>

@@ -99,6 +99,19 @@ class SuperAdminController extends Controller
             ->update($data);
         return Redirect::to('/manage-category');
     }
+
+
+    /**
+     * @param $category_id
+     * @return mixed
+     */
+    public function delete_category($category_id)
+    {
+        DB::table('tbl_category')
+            ->where('category_id', $category_id)
+            ->delete();
+        return Redirect::to('/manage-category');
+    }
     
     
     public function logout()
