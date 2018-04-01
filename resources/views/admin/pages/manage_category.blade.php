@@ -23,20 +23,33 @@
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
                 <thead>
                     <tr>
-                        <th>Username</th>
-                        <th>Date registered</th>
-                        <th>Role</th>
+                        <th>Category ID</th>
+                        <th>Category Name</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>   
                 <tbody>
+                    <?php
+                        foreach($all_category as $v_category)
+                        {
+                    ?>
                     <tr>
-                        <td>Dennis Ji</td>
-                        <td class="center">2012/01/01</td>
-                        <td class="center">Member</td>
+                        <td>{{$v_category->category_id}}</td>
+                        <td class="center">{{$v_category->category_name}}</td>
                         <td class="center">
-                            <span class="label label-success">Active</span>
+                            <?php 
+                            if($v_category->publication_status == 1)
+                            {
+                            ?>
+                            <span class="label label-success">Published</span>
+                            <?php 
+                            }
+                            elseif($v_category->publication_status == 0)
+                            {
+                            ?>
+                            <span class="label label-success">Unpublished</span>
+                            <?php }?>
                         </td>
                         <td class="center">
                             <a class="btn btn-success" href="#">
@@ -50,7 +63,9 @@
                             </a>
                         </td>
                     </tr>
-                    
+                    <?php
+                        }
+                    ?>
                 </tbody>
             </table>            
         </div>

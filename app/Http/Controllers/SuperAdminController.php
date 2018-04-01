@@ -58,9 +58,16 @@ class SuperAdminController extends Controller
      */
     public function manage_category()
     {
-        $manage_category = view('admin.pages.manage_category');
+        $all_category = DB::table('tbl_category')
+                ->select('*')
+                ->get();
+//        echo '<pre>';
+//        print_r($all_category);
+//        exit();
+        $manage_category = view('admin.pages.manage_category')
+                ->with('all_category', $all_category);
         return view('admin.admin_master')
-                    ->with('admin_main_content', $manage_category);
+                ->with('admin_main_content', $manage_category);
     }
     
     
