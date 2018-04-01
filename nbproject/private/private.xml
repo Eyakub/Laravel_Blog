@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="Web works">
-            <file>file:/H:/xampp/htdocs/test/app/Http/Controllers/SuperAdminController.php</file>
-            <file>file:/H:/xampp/htdocs/test/resources/views/admin/admin_login.blade.php</file>
-            <file>file:/H:/xampp/htdocs/test/routes/web.php</file>
-            <file>file:/H:/xampp/htdocs/test/app/Http/Controllers/AdminController.php</file>
-            <file>file:/H:/xampp/htdocs/test/resources/views/admin/pages/manage_category.blade.php</file>
-            <file>file:/H:/xampp/htdocs/test/resources/views/admin/admin_master.blade.php</file>
-        </group>
+        <group name="Web works"/>
     </open-files>
 </project-private>

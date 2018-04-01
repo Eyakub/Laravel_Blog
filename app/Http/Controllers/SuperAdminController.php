@@ -69,6 +69,36 @@ class SuperAdminController extends Controller
         return view('admin.admin_master')
                 ->with('admin_main_content', $manage_category);
     }
+
+
+    /**
+     * @param $category_id to pass id to change publication_status
+     * @return mixed
+     */
+    public function unpublished_category($category_id)
+    {
+        $data = array();
+        $data['publication_status'] = 0;
+        DB::table('tbl_category')
+            //->set('publication_status', 0)
+            ->where('category_id', $category_id)
+            ->update($data);
+        return Redirect::to('/manage-category');
+    }
+
+    /**
+     * @param $category_id
+     * @return mixed
+     */
+    public function published_category($category_id)
+    {
+        $data = array();
+        $data['publication_status'] = 1;
+        DB::table('tbl_category')
+            ->where('category_id', $category_id)
+            ->update($data);
+        return Redirect::to('/manage-category');
+    }
     
     
     public function logout()
