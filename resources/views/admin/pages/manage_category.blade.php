@@ -1,6 +1,7 @@
 @extend('admin.admin_master')
 @section('admin_main_content')
     <script type="text/javascript">
+        {{--this function getting confirmation from user to delete category or not--}}
         function check_delete() {
             chk = confirm("Confirm Delete ?");
             if (chk) {
