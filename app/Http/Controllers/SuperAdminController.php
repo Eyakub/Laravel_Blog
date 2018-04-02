@@ -112,6 +112,23 @@ class SuperAdminController extends Controller
             ->delete();
         return Redirect::to('/manage-category');
     }
+
+
+    /**
+     * @param $category_id
+     * @return $this
+     */
+    public function edit_category($category_id)
+    {
+        $category_info_by_id = DB::table('tbl_category')
+            ->where('category_id', $category_id)
+            ->first();
+        $edit_category = view('admin.pages.edit_category')
+            ->with('category_info', $category_info_by_id);
+
+        return view('admin.admin_master')
+            ->with('admin_main_content', $edit_category);
+    }
     
     
     public function logout()

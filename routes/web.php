@@ -37,6 +37,7 @@ Route::get('/manage-category', 'SuperAdminController@manage_category');
 Route::get('/unpublished-category/{id}', 'SuperAdminController@unpublished_category');
 Route::get('/published-category/{id}', 'SuperAdminController@published_category');
 Route::get('/delete-category/{id}', 'SuperAdminController@delete_category');
+Route::get('/edit-category/{id}', 'SuperAdminController@edit_category');
 
 
 Route::get('/logout', 'SuperAdminController@logout');

@@ -86,11 +86,14 @@
                             <?php
                             }
                             ?>
-                            <a class="btn btn-info" href="#">
+                            <a class="btn btn-info"
+                               href="{{URL::to('/edit-category/'.$v_category->category_id)}}">
                                 <i class="halflings-icon white edit"></i>
                             </a>
-                                {{--onclick e {@return} must else true/false whatever it is, it will delete--}}
-                            <a class="btn btn-danger" href="{{URL::to('/delete-category/'.$v_category->category_id)}}" onclick="return check_delete();">
+                            {{--onclick e {@return} must else true/false whatever it is, it will delete--}}
+                            <a class="btn btn-danger"
+                               href="{{URL::to('/delete-category/'.$v_category->category_id)}}"
+                               onclick="return check_delete();">
                                 <i class="halflings-icon white trash"></i>
                             </a>
                         </td>
