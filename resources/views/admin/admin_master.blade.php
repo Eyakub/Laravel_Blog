@@ -372,7 +372,6 @@
                 <div id="content" class="span10">
                     @yield('admin_main_content')
                 </div>
-                <!--/.fluid-container-->
                 <!-- end: Content -->
             </div><!--/#content.span10-->
         </div><!--/fluid-row-->

@@ -38,9 +38,11 @@ class SuperAdminController extends Controller
      * 
      * @param Request $request
      * to save data from the FORM to database
+     * @return mixed
      */
     public function save_category(Request $request)
     {
+        $this->super_admin_auth_check();
         $data = array();
         $data['category_name'] = $request->category_name; //first category_name = database table column
                                                           //2nd || = form field name
@@ -58,6 +60,7 @@ class SuperAdminController extends Controller
      */
     public function manage_category()
     {
+        $this->super_admin_auth_check();
         $all_category = DB::table('tbl_category')
                 ->select('*')
                 ->get();
@@ -77,6 +80,7 @@ class SuperAdminController extends Controller
      */
     public function unpublished_category($category_id)
     {
+        $this->super_admin_auth_check();
         $data = array();
         $data['publication_status'] = 0;
         DB::table('tbl_category')
@@ -92,6 +96,7 @@ class SuperAdminController extends Controller
      */
     public function published_category($category_id)
     {
+        $this->super_admin_auth_check();
         $data = array();
         $data['publication_status'] = 1;
         DB::table('tbl_category')
@@ -107,6 +112,7 @@ class SuperAdminController extends Controller
      */
     public function delete_category($category_id)
     {
+        $this->super_admin_auth_check();
         DB::table('tbl_category')
             ->where('category_id', $category_id)
             ->delete();
@@ -120,6 +126,7 @@ class SuperAdminController extends Controller
      */
     public function edit_category($category_id)
     {
+        $this->super_admin_auth_check();
         $category_info_by_id = DB::table('tbl_category')
             ->where('category_id', $category_id)
             ->first();
@@ -129,7 +136,23 @@ class SuperAdminController extends Controller
         return view('admin.admin_master')
             ->with('admin_main_content', $edit_category);
     }
-    
+
+
+
+    public function update_category(Request $request)
+    {
+        $this->super_admin_auth_check();
+        $data = array();
+        $category_id = $request->category_id;
+        $data['category_name'] = $request->category_name;
+        $data['category_description'] = $request->category_description;
+
+        DB::table('tbl_category')
+            ->where('category_id', $category_id)
+            ->update($data);
+
+        return Redirect::to('/manage-category');
+    }
     
     public function logout()
     {
