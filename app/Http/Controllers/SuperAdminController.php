@@ -138,7 +138,10 @@ class SuperAdminController extends Controller
     }
 
 
-
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function update_category(Request $request)
     {
         $this->super_admin_auth_check();
@@ -152,6 +155,43 @@ class SuperAdminController extends Controller
             ->update($data);
 
         return Redirect::to('/manage-category');
+    }
+
+
+    /**
+     * @return $this
+     */
+    public function add_blog()
+    {
+        $this->super_admin_auth_check();
+
+        $publish_category = DB::table('tbl_category')
+            ->where('publication_status', 1)
+            ->get();
+
+        $add_blog = view('admin.pages.add_blog')
+            ->with('publish_category', $publish_category);
+
+        return view('admin.admin_master')
+            ->with('admin_main_content', $add_blog);
+    }
+
+
+    public function save_blog(Request $request)
+    {
+        $data = array();
+        $data['category_id'] = $request->category_id;
+        $data['blog_title'] = $request->blog_title;
+        $data['author_name'] = Session::get('admin_name');
+        $data['blog_short_description'] = $request->blog_short_description;
+        $data['blog_long_description'] = $request->blog_long_description;
+        //$data['blog_image'] = ;
+        $data['publication_status'] = $request->publication_status;
+
+        DB::table('tb1_blog')->insert($data);
+        Session::put('message', 'Saved Information Successfully');
+
+        return Redirect::to('/add-blog');
     }
     
     public function logout()

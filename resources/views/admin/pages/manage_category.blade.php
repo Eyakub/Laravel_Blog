@@ -16,7 +16,7 @@
     <ul class="breadcrumb">
         <li>
             <i class="icon-home"></i>
-            <a href="index.html">Home</a>
+            <a href="{{URL::to('dashboard')}}">Home</a>
             <i class="icon-angle-right"></i>
         </li>
         <li><a href="#">Tables</a></li>
