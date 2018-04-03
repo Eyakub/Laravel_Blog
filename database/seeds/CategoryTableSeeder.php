@@ -35,5 +35,7 @@ class CategoryTableSeeder extends Seeder
             'publication_status' => '1',
         ]);
 
+        //factory(App/User::class, 50) ->create(); now call it to the DatabaseSeeder
+
     }
 }

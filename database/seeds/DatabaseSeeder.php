@@ -12,10 +12,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        //factory(App/User::class, 50) ->create(); create 50 user random
         $this -> call([
-            AppTableTblCategory::class,
-            TableTblCategory::class,
-            ]);
+            CategoryTableSeeder::class,
+            //add another seeder class if need
+        ]);
+
     }
 }
