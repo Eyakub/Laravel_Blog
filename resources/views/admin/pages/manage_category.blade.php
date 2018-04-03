@@ -88,6 +88,7 @@
                             ?>
                             <a class="btn btn-info"
                                href="{{URL::to('/edit-category/'.$v_category->category_id)}}">
+                                {{--href="{{URL::to('/add-blog')}}" >--}}
                                 <i class="halflings-icon white edit"></i>
                             </a>
                             {{--onclick e {@return} must else true/false whatever it is, it will delete--}}
