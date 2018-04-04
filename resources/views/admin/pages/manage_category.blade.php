@@ -61,8 +61,10 @@
                             elseif($v_category->publication_status == 0)
                             {
                             ?>
-                            <span class="label label-fail">Unpublished</span>
-                            <?php }?>
+                            <span class="label label-danger">Unpublished</span>
+                            <?php
+                            }
+                            ?>
                         </td>
 
                         <td class="center">
@@ -70,7 +72,7 @@
                             if($v_category->publication_status == 1)
                             {
                             ?>
-                            <a class="btn btn-success"
+                            <a class="btn btn-danger"
                                href="{{URL::to('/unpublished-category/'.$v_category->category_id)}}">
                                 <i class="halflings-icon white thumbs-down"></i>
                             </a>
@@ -79,7 +81,7 @@
                             elseif($v_category->publication_status == 0)
                             {
                             ?>
-                            <a class="btn btn-danger"
+                            <a class="btn btn-success"
                                href="{{URL::to('/published-category/'.$v_category->category_id)}}">
                                 <i class="halflings-icon white thumbs-up"></i>
                             </a>

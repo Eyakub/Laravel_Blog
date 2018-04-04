@@ -14,8 +14,13 @@ class WelcomeController extends Controller
      */
     public function index()
     {
+        $all_published_blog = DB::table('tb1_blog')
+            ->where('publication_status', 1)
+            ->get();
+
         //calling this function from web.php under @routes
-        $home_content = view('pages.home_content');
+        $home_content = view('pages.home_content')
+            ->with('all_published_blog', $all_published_blog);
         $sidebar = 1;
         return view('master')
                 ->with('main_content', $home_content)

@@ -127,10 +127,10 @@ class SuperAdminController extends Controller
     public function edit_category($category_id)
     {
         $this->super_admin_auth_check();
-        $category_info_by_id = DB::table('tbl_category')
+        $category_info_by_id=DB::table('tbl_category')
             ->where('category_id', $category_id)
             ->first();
-        $edit_category = view('admin.pages.edit_category')
+        $edit_category=view('admin.pages.edit_category')
             ->with('category_info', $category_info_by_id);
 
         return view('admin.admin_master')
@@ -154,7 +154,7 @@ class SuperAdminController extends Controller
             ->where('category_id', $category_id)
             ->update($data);
 
-        return Redirect::to('/manage-category');
+        return Redirect::to('manage-category');
     }
 
 
@@ -177,6 +177,10 @@ class SuperAdminController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function save_blog(Request $request)
     {
         $data = array();
@@ -187,11 +191,34 @@ class SuperAdminController extends Controller
         $data['blog_long_description'] = $request->blog_long_description;
         //$data['blog_image'] = ;
         $data['publication_status'] = $request->publication_status;
+        $image = $request ->file('blog_image');
 
-        DB::table('tb1_blog')->insert($data);
-        Session::put('message', 'Saved Information Successfully');
+//        echo '<pre>';
+//        print_r($image);
+//        exit();
 
-        return Redirect::to('/add-blog');
+        if($image)
+        {
+            $image_name = str_random(20);
+            $ext = strtolower($image ->getClientOriginalExtension());
+            $image_full_name = $image_name.'.'.$ext;
+            $upload_path = 'blog_image/'; //folder name that created into public
+            $image_url = $upload_path.$image_full_name;
+            $success = $image->move($upload_path, $image_full_name);
+            if($success)
+            {
+                $data['blog_image'] = $image_url;
+                DB::table('tb1_blog') ->insert($data);
+                Session::put('message', 'Saved Information Successfully');
+                return Redirect::to('add-blog');
+            }
+        }
+        else{
+            DB::table('tb1_blog')->insert($data);
+            Session::put('message', 'Saved Information Successfully');
+            return Redirect::to('/add-blog');
+        }
+
     }
     
     public function logout()

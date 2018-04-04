@@ -30,7 +30,7 @@
                 ?>
             </h3>
             <div class="box-content">
-                {!! Form::open(['url' => '/save-blog', 'method'=>'post']) !!}
+                {!! Form::open(['url' => '/save-blog', 'method'=>'post', 'enctype' => 'multipart/form-data']) !!}
                 <fieldset>
                     <div class="control-group">
                         <label class="control-label" for="typeahead">Blog Title </label>
