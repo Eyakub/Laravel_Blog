@@ -121,10 +121,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <?php }?>
                 </div>
                 <div class="archives">
-                    <h3>ARCHIVES</h3>
-                    <li class="active"><a href="#">July 2014</a></li>
-                    <li><a href="#">June 2014</a></li>
-                    <li><a href="#">May 2014</a></li>
+                    <h3>Recent Blog</h3>
+                    <?php
+                    $recent_blog = DB::table('tb1_blog')
+                        ->where('publication_status', 1)
+                        ->orderBy('blog_id', 'desc')
+                        ->take(3)
+                        ->get();
+                    foreach ($recent_blog as $v_blog)
+                    {
+                    ?>
+                    <li class="active"><a href="#">{{$v_blog -> blog_title}}</a></li>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
             <?php } ?>
