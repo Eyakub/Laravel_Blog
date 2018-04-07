@@ -158,6 +158,9 @@ class SuperAdminController extends Controller
     }
 
 
+
+
+
     /**
      * @return $this
      */
@@ -220,7 +223,113 @@ class SuperAdminController extends Controller
         }
 
     }
-    
+
+    public function manage_blog()
+    {
+        $this->super_admin_auth_check();
+        $m = view('admin.pages.manage_blog');
+//        $blog_info = DB::table('tb1_blog')
+//            ->select('*')
+//            ->get();
+//
+//        $manage_blog = view('admin.pages.manage_blog')
+//            ->with('blog_info', $blog_info);
+//
+//        return view('admin.admin_master')
+//            ->with('admin_main_content', $manage_blog);
+        return view('admin.admin_master')
+            ->with('admin_main_content', $m);
+    }
+
+
+    /**
+     * @param $blog_id to pass id to change publication_status
+     * @return mixed
+     */
+    public function unpublished_blog($blog_id)
+    {
+        $this->super_admin_auth_check();
+        $data = array();
+        $data['publication_status'] = 0;
+        DB::table('tb1_blog')
+            //->set('publication_status', 0)
+            ->where('blog_id', $blog_id)
+            ->update($data);
+        return Redirect::to('/manage-blog');
+    }
+
+    /**
+     * @param $blog_id
+     * @return mixed
+     */
+    public function published_blog($blog_id)
+    {
+        $this->super_admin_auth_check();
+        $data = array();
+        $data['publication_status'] = 1;
+        DB::table('tb1_blog')
+            ->where('blog_id', $blog_id)
+            ->update($data);
+        return Redirect::to('/manage-blog');
+    }
+
+
+    /**
+     * @param $blog_id
+     * @return mixed
+     */
+    public function delete_blog($blog_id)
+    {
+        DB::table('tb1_blog')
+            ->where('blog_id', $blog_id)
+            ->delete();
+        return Redirect::to('/manage-blog');
+    }
+
+    /**
+     * @param $blog_id
+     * @return $this
+     */
+    public function edit_blog($blog_id)
+    {
+        $this->super_admin_auth_check();
+
+        $blog_info = DB::table('tb1_blog')
+            ->where('blog_id', $blog_id)
+            ->first();
+        $all_published_category = DB::table('tbl_category')
+            ->where('publication_status', 1)
+            ->get();
+        $edit_blog = view('admin.pages.edit_blog')
+            ->with('blog_info', $blog_info)
+            ->with('category_info', $all_published_category);
+        return view('admin.admin_master')
+            ->with('admin_main_content', $edit_blog);
+    }
+
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function update_blog(Request $request)
+    {
+        //imageUrl = $this->>imageExistStatus($request);
+        $data = array();
+        $blog_id = $request->blog_id;
+        $data['blog_title'] =  $request->blog_title;
+        $data['blog_short_description'] = $request->blog_short_description;
+        $data['blog_long_description'] = $request->blog_long_description;
+
+        DB::table('tb1_blog')
+            ->where('blog_id', $blog_id)
+            ->update();
+
+        Session::put('message', 'Blog updated successfully');
+        return Redirect::to('/manage-blog');
+    }
+
+
     public function logout()
     {
         Session::put('admin_id', '');

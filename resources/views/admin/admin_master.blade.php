@@ -338,7 +338,7 @@
                             <li><a href="{{URL::to('/add-category')}}"><i class="icon-envelope"></i><span class="hidden-tablet"> Add Category</span></a></li>
                             <li><a href="{{URL::to('/manage-category')}}"><i class="icon-tasks"></i><span class="hidden-tablet"> Manage Category</span></a></li>
                             <li><a href="{{URL::to('/add-blog')}}"><i class="icon-eye-open"></i><span class="hidden-tablet"> Add Blog</span></a></li>
-                            <li><a href="widgets.html"><i class="icon-dashboard"></i><span class="hidden-tablet"> Manage Blog</span></a></li>
+                            <li><a href="{{URL::to('/manage-blog')}}"><i class="icon-dashboard"></i><span class="hidden-tablet"> Manage Blog</span></a></li>
                             <li>
                                 <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Dropdown</span><span class="label label-important"> 3 </span></a>
                                 <ul>
