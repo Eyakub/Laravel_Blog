@@ -22,7 +22,7 @@
                     }
                     ?>
                     <!--eta web.php te jeye route e check korbe (blog-details ta-->
-                    <a class="bttn" href="{{URL::to('/blog-details')}}">MORE</a>
+                    <a class="bttn" href="{{URL::to('/blog-details/'.$v_blog->blog_id)}}">MORE</a>
                 </div>
             @endforeach
 

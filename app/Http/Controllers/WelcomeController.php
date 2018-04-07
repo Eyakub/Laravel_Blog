@@ -16,6 +16,7 @@ class WelcomeController extends Controller
     {
         $all_published_blog = DB::table('tb1_blog')
             ->where('publication_status', 1)
+            ->orderBy('blog_id', 'desc')
             ->get();
 
         //calling this function from web.php under @routes
@@ -42,13 +43,34 @@ class WelcomeController extends Controller
                 ->with('sidebar', $sidebar);
     }
     
-    public function blog_details()
+    public function blog_details($blog_id)
     {
-        $blog_details = view('pages.blog_details');
+        $blog_info = DB::table('tb1_blog')
+            ->where('blog_id', $blog_id)
+            ->first();
+        $blog_details = view('pages.blog_details')
+            ->with('blog_info', $blog_info);
         $sidebar = 1;
         return view('master')
                 ->with('main_content', $blog_details)
                 ->with('sidebar', $sidebar);
+    }
+
+    public function blog_by_category($category_id)
+    {
+        $all_published_blog_by_category = DB::table('tb1_blog')
+            ->where('publication_status', 1)
+            ->where('category_id', $category_id)
+            ->orderBy('blog_id', 'desc')
+            ->get();
+
+        //calling this function from web.php under @routes
+        $home_content = view('pages.home_content')
+            ->with('all_published_blog', $all_published_blog_by_category);
+        $sidebar = 1;
+        return view('master')
+            ->with('main_content', $home_content)
+            ->with('sidebar', $sidebar);
     }
     
     
