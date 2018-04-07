@@ -48,8 +48,23 @@ class WelcomeController extends Controller
         $blog_info = DB::table('tb1_blog')
             ->where('blog_id', $blog_id)
             ->first();
+
+//        echo '<pre>';
+//        print_r($blog_info);
+//        exit();
+        $data = array();
+        $data['hit_count'] = $blog_info->hit_count + 1;
+        DB::table('tb1_blog')
+            ->where('blog_id', $blog_id)
+            ->update($data);
+
+        $blog_new_info = DB::table('tb1_blog')
+            ->where('blog_id', $blog_id)
+            ->first();
+
         $blog_details = view('pages.blog_details')
-            ->with('blog_info', $blog_info);
+            ->with('blog_info', $blog_new_info);
+
         $sidebar = 1;
         return view('master')
                 ->with('main_content', $blog_details)

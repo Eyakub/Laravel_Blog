@@ -79,9 +79,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
         <div class="banner-links">
             <ul>
-                <li class="active"><a href="#">LOREM IPSUM</a></li>
-                <li><a href="#">DOLAR SITE AMET</a></li>
-                <li><a href="#">MORBI IN SEM</a></li>
+                <li class="active"><a href="{{URL::to('/login')}}">Login</a></li>
+                <li><a href="{{URL::to('/register')}}">Register</a></li>
                 <div class="clearfix"></div>
             </ul>
         </div>
@@ -136,6 +135,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     }
                     ?>
                 </div>
+
+                <div class="archives">
+                    <h3>Popular Blog</h3>
+                    <?php
+                    $popular_blog = DB::table('tb1_blog')
+                        ->where('publication_status', 1)
+                        ->orderBy('hit_count', 'desc')
+                        ->take(2)
+                        ->get();
+                    foreach ($popular_blog as $v_blog)
+                    {
+                    ?>
+                    <li class="active"><a href="{{URL::to('/blog-details/'.$v_blog->blog_id)}}">{{$v_blog -> blog_title}} &nbsp;&nbsp; Hit Count({{$v_blog->hit_count}})</a></li>
+                    <?php
+                    }
+                    ?>
+                </div>
             </div>
             <?php } ?>
             <div class="clearfix"></div>
@@ -163,9 +179,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="col-md-4 fotter-media">
             <h3>FOLLOW US ON....</h3>
             <div class="social-icons">
-                <a href="#"><span class="fb"> </span></a>
+                <a href="www.facebook.com/mdes.mdes"><span class="fb"> </span></a>
                 <a href="#"><span class="twt"> </span></a>
-                <a href="#"><span class="in"> </span></a>
+                <a href="linkedin.com/in/eyakub-sorkar/"><span class="in"> </span></a>
             </div>
         </div>
         <div class="clearfix"></div>

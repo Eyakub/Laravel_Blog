@@ -55,3 +55,8 @@ Route::get('/delete-blog/{id}', 'SuperAdminController@delete_blog');
 
 
 Route::get('/logout', 'SuperAdminController@logout');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
