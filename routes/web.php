@@ -45,12 +45,12 @@ Route::post('/update-category', 'SuperAdminController@update_category');
 //blog
 Route::get('/add-blog', 'SuperAdminController@add_blog');
 Route::post('/save-blog', 'SuperAdminController@save_blog');
-Route::post('/manage-blog', 'SuperAdminController@manage_blog');
-Route::post('/edit-blog/{id}', 'SuperAdminController@edit_blog');
+Route::get('/manage-blog', 'SuperAdminController@manage_blog');
+Route::get('/edit-blog/{id}', 'SuperAdminController@edit_blog');
 Route::post('/update-blog', 'SuperAdminController@update_blog');
-Route::post('/unpublished-blog/{id}', 'SuperAdminController@unpublished_blog');
-Route::post('/published-blog/{id}', 'SuperAdminController@published_blog');
-Route::post('/delete-blog/{id}', 'SuperAdminController@delete_blog');
+Route::get('/unpublished-blog/{id}', 'SuperAdminController@unpublished_blog');
+Route::get('/published-blog/{id}', 'SuperAdminController@published_blog');
+Route::get('/delete-blog/{id}', 'SuperAdminController@delete_blog');
 
 
 Route::get('/logout', 'SuperAdminController@logout');
