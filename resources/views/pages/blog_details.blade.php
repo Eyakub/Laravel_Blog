@@ -15,14 +15,13 @@
                 <div class="content-form">
                     @if(Auth::user() != NULL)
                         <h3>Leave a comment</h3>
-                        <form>
-                            <input type="text" placeholder="Name" required/>
-                            <input type="text" placeholder="E-mail" required/>
-                            <input type="text" placeholder="Phone" required/>
-                            <textarea placeholder="Message"></textarea>
-                            <input type="submit" value="SEND"/>
-                        </form>
-                        @else
+                        {!! Form::open(['url' => '/save-comment', 'method'=>'post']) !!}
+                        <textarea rows="5" cols="30" name="comments" placeholder="Message"></textarea>
+                        <input type="hidden" name="id" value="{{Auth::user()->id}}">
+                        <input type="hidden" name="blog_id" value="{{$blog_info->blog_id}}">
+                        <input type="submit" value="Comments"/>
+                        {!! Form::close() !!}
+                    @else
                         <h3><a href="{{URL::to('/login')}}">Login to comment</a></h3>
                     @endif
                 </div>

@@ -54,6 +54,11 @@ Route::get('/published-blog/{id}', 'SuperAdminController@published_blog');
 Route::get('/delete-blog/{id}', 'SuperAdminController@delete_blog');
 
 
+//comments handle
+Route::post('/save-comments/{id}', 'WelcomeController@save_comments');
+
+
+//handle logout
 Route::get('/admin-logout', 'SuperAdminController@logout');
 Route::get('/user-logout', 'SuperAdminController@logout');
 

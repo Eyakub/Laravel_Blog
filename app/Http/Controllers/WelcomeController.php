@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Redirect;
 
 class WelcomeController extends Controller
 {
@@ -89,7 +90,21 @@ class WelcomeController extends Controller
             ->with('sidebar', $sidebar);
     }
     
-    
+    public function save_comments(Request $request)
+    {
+        $data = array();
+        $data['user_id'] = $request->id;
+        $data['blog_id'] = $request->blog_id;
+        $data['comments'] = $request->comments;
+
+        DB::table('tbl_comments')
+            ->insert($data);
+        Session::put('message', 'Comment submitted to admin approval');
+
+        return Redirect::to('/blog-details/'.$request->blog_id);
+    }
+
+
     public function create()
     {
         //
