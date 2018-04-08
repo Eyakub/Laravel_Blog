@@ -311,7 +311,50 @@ class SuperAdminController extends Controller
     }
 
 
-    public function logout()
+    /**
+     * Comment handling
+     */
+    public function manage_comments()
+    {
+        $this->super_admin_auth_check();
+
+        $comment_info = DB::table('tbl_comments')
+            ->get();
+        $manage_comments = view('admin.pages.manage_comments')
+            ->with('comment_info', $comment_info);
+
+        return view('admin.admin_master')
+            ->with('admin_main_content', $manage_comments);
+    }
+
+
+    public function published_comment($comment_id)
+    {
+        DB::table('tbl_comments')
+            ->where('comments_id', $comment_id)
+            ->update(['publication_status' => 1]);
+        return Redirect::to('/manage-comments');
+    }
+
+
+    public function unpublished_comment($comment_id)
+    {
+        DB::table('tbl_comments')
+            ->where('comments_id', $comment_id)
+            ->update(['publication_status' => 0]);
+        return Redirect::to('/manage-comments');
+    }
+
+
+    public function delete_comment($comment_id)
+    {
+        DB::table('tbl_comments')
+            ->where('comments_id', $comment_id)
+            ->delete();
+        return Redirect::to('/manage-comments');
+    }
+
+    public function admin_logout()
     {
         Session::put('admin_id', '');
         Session::put('admin_name', '');

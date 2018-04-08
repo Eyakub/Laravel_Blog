@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Redirect;
+use Session;
 
 class WelcomeController extends Controller
 {

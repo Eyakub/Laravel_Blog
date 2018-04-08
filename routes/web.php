@@ -32,7 +32,7 @@ Route::post('/admin-login','AdminController@admin_login_check'); //form er khetr
 Route::get('/dashboard', 'SuperAdminController@index');
 
 
-//category
+//category handle
 Route::get('/add-category', 'SuperAdminController@add_category');
 Route::post('/save-category', 'SuperAdminController@save_category');
 Route::get('/manage-category', 'SuperAdminController@manage_category');
@@ -43,7 +43,7 @@ Route::get('/edit-category/{id}', 'SuperAdminController@edit_category');
 Route::post('/update-category', 'SuperAdminController@update_category');
 
 
-//blog
+//blog handle
 Route::get('/add-blog', 'SuperAdminController@add_blog');
 Route::post('/save-blog', 'SuperAdminController@save_blog');
 Route::get('/manage-blog', 'SuperAdminController@manage_blog');
@@ -55,11 +55,16 @@ Route::get('/delete-blog/{id}', 'SuperAdminController@delete_blog');
 
 
 //comments handle
-Route::post('/save-comments/{id}', 'WelcomeController@save_comments');
+Route::post('/save-comments', 'WelcomeController@save_comments');
+Route::get('/manage-comments', 'SuperAdminController@manage_comments');
+Route::get('/unpublished-comments/{id}', 'SuperAdminController@unpublished_comment');
+Route::get('/published-comments/{id}', 'SuperAdminController@published_comment');
+Route::get('/delete-comments/{id}', 'SuperAdminController@delete_comment');
+
 
 
 //handle logout
-Route::get('/admin-logout', 'SuperAdminController@logout');
+Route::get('/admin-logout', 'SuperAdminController@admin_logout');
 Route::get('/user-logout', 'SuperAdminController@logout');
 
 

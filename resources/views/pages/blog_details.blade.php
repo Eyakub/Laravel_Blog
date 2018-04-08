@@ -15,7 +15,7 @@
                 <div class="content-form">
                     @if(Auth::user() != NULL)
                         <h3>Leave a comment</h3>
-                        {!! Form::open(['url' => '/save-comment', 'method'=>'post']) !!}
+                        {!! Form::open(['url' => '/save-comments', 'method' => 'post']) !!}
                         <textarea rows="5" cols="30" name="comments" placeholder="Message"></textarea>
                         <input type="hidden" name="id" value="{{Auth::user()->id}}">
                         <input type="hidden" name="blog_id" value="{{$blog_info->blog_id}}">
@@ -24,19 +24,41 @@
                     @else
                         <h3><a href="{{URL::to('/login')}}">Login to comment</a></h3>
                     @endif
+                    <h3 style="color: green">
+                        <?php
+                        $message = Session::get('message');
+                        if ($message) {
+                            echo $message;
+                            Session::put('message', '');
+                        }
+                        ?>
+                    </h3>
                 </div>
+
+                {{--Comment section--}}
                 <div class="comments">
                     <h3>Comment</h3>
+                <?php
+                        $published_comments = DB::table('tbl_comments')
+                            ->join('users', 'users.id', '=', 'tbl_comments.user_id')
+                            ->select('tbl_comments.*', 'users.name')
+                            ->where('publication_status', 1)
+                            ->where('blog_id', $blog_info->blog_id)
+                            ->get();
+                        foreach ($published_comments as $v_comments)
+                        {
+                    ?>
                     <div class="comment-grid">
                         <img src="images/pic.png" alt=""/>
                         <div class="comment-info">
-                            <h4>MARK JOHNSON</h4>
-                            <p>Vivamus congue turpis in laoreet sem nec ultrices. Fusce blandit nunc vehicula massa
-                                vehicula tincidunt. Nam venenatis cursus urna sed gravida. Ut tincidunt elit ut quam
-                                malesuada consequat. Sed semper.</p>
-                            <h5>On April 14, 2014, 18:01</h5>
-                            <a href="#">Reply</a>
+                            <h4>{{$v_comments->name}}</h4>
+                            <p>{{$v_comments->comments}}</p>
+                            <h5>{{$v_comments->created_at}}</h5>
+                            {{--<a href="#">Reply</a>--}}
                         </div>
+                        <?php
+                        }
+                        ?>
                         <div class="clearfix"></div>
                     </div>
 
