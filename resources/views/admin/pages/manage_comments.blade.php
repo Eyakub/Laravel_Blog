@@ -57,7 +57,18 @@
                         <td class="center">{{$v_comments->comments}}</td>
 
                         {{--blog name--}}
-                        <td class="center">{{$v_comments->blog_id}}</td>
+                        <?php
+                        $blog_name_category = DB::table('tbl_comments')
+                            ->join('tb1_blog', 'tb1_blog.blog_id', '=', 'tbl_comments.blog_id')
+                            ->select('tb1_blog.*', 'tbl_comments.blog_id')
+                            ->where('blog_id', $v_comments->blog_id)
+                            ->get();
+                        foreach ($blog_name_category as $v_n_c){
+                        ?>
+                        <td class="center">{{$v_n_c->blog_title}}</td>
+                        <?php
+                        }
+                        ?>
 
                         {{--blog category--}}
                         <td class="center">{{$v_comments->blog_id}}</td>
