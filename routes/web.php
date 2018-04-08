@@ -54,9 +54,10 @@ Route::get('/published-blog/{id}', 'SuperAdminController@published_blog');
 Route::get('/delete-blog/{id}', 'SuperAdminController@delete_blog');
 
 
-Route::get('/logout', 'SuperAdminController@logout');
+Route::get('/admin-logout', 'SuperAdminController@logout');
+Route::get('/user-logout', 'SuperAdminController@logout');
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

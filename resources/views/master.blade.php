@@ -79,9 +79,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
         <div class="banner-links">
             <ul>
-                <li class="active"><a href="{{URL::to('/login')}}">Login</a></li>
-                <li><a href="{{URL::to('/register')}}">Register</a></li>
-                <div class="clearfix"></div>
+                @if(Auth::user() == NULL)
+                    <li class="active"><a href="{{URL::to('/login')}}">Login</a></li>
+                    <li><a href="{{URL::to('/register')}}">Register</a></li>
+                    <div class="clearfix"></div>
+                @else
+                    <li>
+                        <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                        </form>
+                    </li>
+                    <div class="clearfix"></div>
+                @endif
             </ul>
         </div>
     </div>
@@ -116,7 +131,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     foreach ($all_published_category as $v_category)
                     {
                     ?>
-                    <li class="active"><a href="{{URL::to('/blog-by-category/'.$v_category->category_id)}}">{{$v_category->category_name}}</a></li>
+                    <li class="active"><a
+                                href="{{URL::to('/blog-by-category/'.$v_category->category_id)}}">{{$v_category->category_name}}</a>
+                    </li>
                     <?php }?>
                 </div>
                 <div class="archives">
@@ -130,7 +147,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     foreach ($recent_blog as $v_blog)
                     {
                     ?>
-                    <li class="active"><a href="{{URL::to('/blog-details/'.$v_blog->blog_id)}}">{{$v_blog -> blog_title}}</a></li>
+                    <li class="active"><a
+                                href="{{URL::to('/blog-details/'.$v_blog->blog_id)}}">{{$v_blog -> blog_title}}</a></li>
                     <?php
                     }
                     ?>
@@ -147,7 +165,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     foreach ($popular_blog as $v_blog)
                     {
                     ?>
-                    <li class="active"><a href="{{URL::to('/blog-details/'.$v_blog->blog_id)}}">{{$v_blog -> blog_title}} &nbsp;&nbsp; Hit Count({{$v_blog->hit_count}})</a></li>
+                    <li class="active"><a
+                                href="{{URL::to('/blog-details/'.$v_blog->blog_id)}}">{{$v_blog -> blog_title}} &nbsp;&nbsp;
+                            Hit Count({{$v_blog->hit_count}})</a></li>
                     <?php
                     }
                     ?>
