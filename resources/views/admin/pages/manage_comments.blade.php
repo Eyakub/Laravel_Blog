@@ -19,13 +19,13 @@
             <a href="{{URL::to('dashboard')}}">Home</a>
             <i class="icon-angle-right"></i>
         </li>
-        <li><a href="#">Tables</a></li>
+        <li><a href="#">Manage Comments</a></li>
     </ul>
 
     <div class="row-fluid sortable">
         <div class="box span12">
             <div class="box-header" data-original-title>
-                <h2><i class="halflings-icon user"></i><span class="break"></span>Members</h2>
+                <h2><i class="halflings-icon user"></i><span class="break"></span>Comment Info</h2>
                 <div class="box-icon">
                     <a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
                     <a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
@@ -38,8 +38,8 @@
                     <tr>
                         <th>Comment ID</th>
                         <th>Comments</th>
-                        <th>Blog Name</th>
-                        <th>Blog Category</th>
+                        {{--<th>Blog Name</th>--}}
+                        {{--<th>Blog Category</th>--}}
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -57,20 +57,9 @@
                         <td class="center">{{$v_comments->comments}}</td>
 
                         {{--blog name--}}
-                        <?php
-                        $blog_name_category = DB::table('tb1_blog')
-                            ->join('tbl_comments', 'tb1_blog.blog_id', '=', 'tbl_comments.blog_id')
-                            ->select('tb1_blog.blog_title')
-                            ->get();
-                        foreach ($blog_name_category as $v_n_c){
-                        ?>
-                        <td class="center">{{$v_n_c->blog_title}}</td>
-                        <?php
-                        }
-                        ?>
 
                         {{--blog category--}}
-                        <td class="center">{{$v_comments->blog_id}}</td>
+
 
                         {{--comment published or not check status--}}
                         <td class="center">
