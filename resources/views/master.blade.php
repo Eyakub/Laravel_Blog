@@ -110,7 +110,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 
             <?php
-            if ($sidebar == 1)
+            if ($sidebar === 1)
             {
             ?>
             <div class="col-md-4 content-main-right">

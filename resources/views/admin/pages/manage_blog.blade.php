@@ -65,39 +65,39 @@
 
                         {{--fetching category name via tb1_blog table--}}
                         <?php
-                            $category_id = $v_blog->category_id;
-                            $category_info = DB::table('tbl_category')
-                                ->where('category_id', $category_id)
-                                ->value('category_name');
+                        $category_id = $v_blog->category_id;
+                        $category_info = DB::table('tbl_category')
+                            ->where('category_id', $category_id)
+                            ->value('category_name');
                         ?>
                         <td class="center"><?php echo $category_info;?></td>
 
                         <td>
-                            @if($v_blog->blog_image != NULL)
+                            @if($v_blog->blog_image !== NULL)
                                 <img src="{{asset(($v_blog->blog_image))}}" alt="img" height="30" width="70">
                             @endif
                         </td>
 
                         <td class="center">
-                    <?php
-                        if($v_blog->publication_status == 1)
-                        {
-                        ?>
-                        <span class="label label-success">Published</span>
-                    <?php
-                        }
-                        elseif($v_blog->publication_status == 0)
-                        {
-                        ?>
-                        <span class="label label-danger">Unpublished</span>
-                        <?php
-                        }
-                        ?>
+                            <?php
+                            if($v_blog->publication_status === 1)
+                            {
+                            ?>
+                            <span class="label label-success">Published</span>
+                            <?php
+                            }
+                            elseif($v_blog->publication_status === 0)
+                            {
+                            ?>
+                            <span class="label label-danger">Unpublished</span>
+                            <?php
+                            }
+                            ?>
                         </td>
 
                         <td class="center">
                             <?php
-                            if($v_blog->publication_status == 1)
+                            if($v_blog->publication_status === 1)
                             {
                             ?>
                             <a class="btn btn-danger"
@@ -106,7 +106,7 @@
                             </a>
                             <?php
                             }
-                            elseif($v_blog->publication_status == 0)
+                            elseif($v_blog->publication_status === 0)
                             {
                             ?>
                             <a class="btn btn-success"
